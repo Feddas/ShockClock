@@ -45,7 +45,7 @@ namespace ShockClock
             InitializeComponent();
         }
 
-        private void Clock_Click(object sender, RoutedEventArgs e)
+        private void Start_Click(object sender, RoutedEventArgs e)
         {
             if (Settings.Visibility == System.Windows.Visibility.Visible)
             {
@@ -97,7 +97,8 @@ namespace ShockClock
         void countdownTimer_Tick(object sender, EventArgs e)
         {
             TimeSpan timeLeft = EndTime - DateTime.Now;
-            txtClock.Text = (int)timeLeft.TotalMinutes + timeLeft.ToString(@"\:ss");
+            string minutesRemaining = ((int)timeLeft.TotalMinutes).ToString("00"); //show 2 digits for minutes
+            txtClock.Text = minutesRemaining + timeLeft.ToString(@"\:ss");
             //txtClock.Text = timeLeft.ToString(@"mm\:ss"); //http://msdn.microsoft.com/en-us/library/ee372287.aspx
 
             if (timeLeft.TotalSeconds <= 0)

@@ -38,7 +38,7 @@
                 
                 <CheckBox Content="Sound Alarm" Visibility="Collapsed" />
 
-                <Button Content="Start Clock" Click="Clock_Click" Height="20" />
+                <Button Content="Start Clock" Click="Start_Click" Height="20" />
                 <TextBlock Text="v0.1" TextAlignment="Right" />
                 <Button Content="Maximize"
                         Click="Maximize_Click" />
