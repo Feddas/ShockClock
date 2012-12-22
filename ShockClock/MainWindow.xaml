@@ -1,23 +1,28 @@
 ﻿<Window x:Class="ShockClock.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:viewmodel="clr-namespace:ShockClock.ViewModel"
         Title="MainWindow" Height="350" Width="525"
         AllowsTransparency="True" Background="#00000000" WindowStyle="None">
-    <Grid x:Name="LayoutRoot">
+    <Window.Resources>
+        <viewmodel:MainWindowViewModel x:Key="ViewModel" />
+    </Window.Resources>
+    <Grid x:Name="LayoutRoot" DataContext="{StaticResource ViewModel}">
         <Viewbox>
-            <TextBlock x:Name="txtClock" Text="00:00" Foreground="#33000000" Opacity="50"
+            <TextBlock x:Name="txtClock" Text="{Binding ClockText}" Foreground="#33000000" Opacity="50"
                        MouseLeftButtonDown="DragMove_MouseLeftButtonDown" />
         </Viewbox>
         <Canvas>
             <StackPanel x:Name="Settings" Margin="0 20 0 0" Background="White"
-                           MouseLeftButtonDown="DragMove_MouseLeftButtonDown">
+                        Visibility="{Binding VisibilityOfSettings}"
+                        MouseLeftButtonDown="DragMove_MouseLeftButtonDown">
                 <TextBlock Text="Move clock" TextAlignment="Center" Background="Gray" />
 
                 <!--<RadioButton GroupName="TimeTarget">
                     <RadioButton.Content>-->
                         <StackPanel>
                             <TextBlock Text="Minutes Remaining" />
-                            <TextBox Text="{Binding Path=Parent.Minutes, ElementName=LayoutRoot}" />
+                            <TextBox Text="{Binding Minutes}" />
                         </StackPanel>
                     <!--</RadioButton.Content>
                 </RadioButton>
