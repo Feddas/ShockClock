@@ -37,10 +37,12 @@ namespace ShockClock
         }
         private MainWindowViewModel _viewModel;
 
+        readonly double ratio;
 
         public MainWindow()
         {
             InitializeComponent();
+            ratio = this.Height / this.Width;
         }
 
         private void Start_Click(object sender, RoutedEventArgs e)
@@ -70,6 +72,16 @@ namespace ShockClock
         private void DragMove_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             DragMove();
+        }
+
+        private void Resize_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            Size newSize = new Size(this.Width, this.Height);
+            if (ViewModelBehind != null && ViewModelBehind.Resize(ref newSize, e.Delta, ratio))
+            {
+                this.Width = newSize.Width;
+                this.Height = newSize.Height;
+            }
         }
     }
 }

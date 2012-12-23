@@ -37,13 +37,13 @@ namespace ShockClock.ViewModel
         public static readonly DependencyProperty VisibilityOfSettingsProperty =
             DependencyProperty.Register("VisibilityOfSettings", typeof(Visibility), typeof(MainWindowViewModel), new UIPropertyMetadata(Visibility.Visible));
 
-        public int Minutes
+        public double Minutes
         {
-            get { return (int)GetValue(MinutesProperty); }
+            get { return (double)GetValue(MinutesProperty); }
             set { SetValue(MinutesProperty, value); }
         }
         public static readonly DependencyProperty MinutesProperty =
-            DependencyProperty.Register("Minutes", typeof(int), typeof(MainWindowViewModel), new UIPropertyMetadata(0));
+            DependencyProperty.Register("Minutes", typeof(double), typeof(MainWindowViewModel), new UIPropertyMetadata(0d));
 
         public DateTime EndTime
         {
@@ -97,6 +97,22 @@ namespace ShockClock.ViewModel
                 btnText = "Maximize";
             }
             return winState;
+        }
+
+        public bool Resize(ref Size currentSize, int delta, double ratio)
+        {
+            if (currentSize.Width > delta * -1 && currentSize.Height > delta * -1
+                && currentSize.Width + delta < SystemParameters.WorkArea.Width
+                && currentSize.Height + delta < SystemParameters.WorkArea.Height)
+            {
+                currentSize.Width += ratio * delta;
+                currentSize.Height += (1 - ratio) * delta;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         void countdownTimer_Tick(object sender, EventArgs e)

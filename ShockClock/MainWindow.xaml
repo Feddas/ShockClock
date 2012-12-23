@@ -7,16 +7,14 @@
     <Window.Resources>
         <viewmodel:MainWindowViewModel x:Key="ViewModel" />
     </Window.Resources>
-    <Grid x:Name="LayoutRoot" DataContext="{StaticResource ViewModel}">
+    <Grid x:Name="LayoutRoot" DataContext="{StaticResource ViewModel}"
+          MouseLeftButtonDown="DragMove_MouseLeftButtonDown" MouseWheel="Resize_MouseWheel">
         <Viewbox>
-            <TextBlock x:Name="txtClock" Text="{Binding ClockText}" Foreground="#33000000" Opacity="50"
-                       MouseLeftButtonDown="DragMove_MouseLeftButtonDown" />
+            <TextBlock Text="{Binding ClockText}" Foreground="#33000000" Opacity="50" />
         </Viewbox>
         <Canvas>
-            <StackPanel x:Name="Settings" Margin="0 20 0 0" Background="White"
-                        Visibility="{Binding VisibilityOfSettings}"
-                        MouseLeftButtonDown="DragMove_MouseLeftButtonDown">
-                <TextBlock Text="Move clock" TextAlignment="Center" Background="Gray" />
+            <StackPanel Margin="0 20 0 0" Background="White"
+                        Visibility="{Binding VisibilityOfSettings}">
 
                 <!--<RadioButton GroupName="TimeTarget">
                     <RadioButton.Content>-->
@@ -40,10 +38,12 @@
                         </StackPanel>
                     </RadioButton.Content>
                 </RadioButton>-->
-                
+
                 <CheckBox Content="Sound Alarm" Visibility="Collapsed" />
 
                 <Button Content="Start Clock" Click="Start_Click" Height="20" />
+                <TextBlock Text="Move by click and drag" TextAlignment="Center" Background="Gray" />
+                <TextBlock Text="Resize by scroll wheel" TextAlignment="Center" Background="Gray" />
                 <TextBlock Text="v0.1" TextAlignment="Right" />
                 <Button Content="Maximize"
                         Click="Maximize_Click" />
