@@ -10,7 +10,7 @@ using System.Windows;
 [assembly: AssemblyTitle("ShockClock")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("MSIT")]
+[assembly: AssemblyCompany("ShawnFeatherly")]
 [assembly: AssemblyProduct("ShockClock")]
 [assembly: AssemblyCopyright("Copyright © MSIT 2012")]
 [assembly: AssemblyTrademark("")]
